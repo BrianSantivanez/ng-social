@@ -1,4 +1,11 @@
-<div *ngIf="post">
-    {{post.value}}
-    {{post.date}}
+<div class="container">
+    <div class="card" style="width: 1000px;padding: 10px;margin: 50px;">
+        <div class="card-body">
+            <p class="card-text" *ngIf="post">
+                {{post.date}}
+                <br>
+                {{post.value}}
+            </p>
+        </div>
+    </div>
 </div>
