@@ -5,7 +5,7 @@ import { AboutComponent } from './about/about.component';
 const routes: Routes = [
   {
     path : '',
-    redirectTo : 'feed',
+    redirectTo : 'login',
     pathMatch: 'full'
   },
   {
@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path : 'about',
     component: AboutComponent
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then((m) => m.LoginModule),
   },
 ];
 

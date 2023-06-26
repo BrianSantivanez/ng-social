@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="fs-1 fw-bold text-decoration-underline">
+        Signup
+    </div>
+
+    <div class="container" style="padding: 10px;margin: 50px;">
+        <form #signupForm="ngForm" (ngSubmit)="signup()">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input
+                    class="form-control"
+                    type="username" 
+                    name="username" 
+                    id="username" 
+                    [(ngModel)]="username" 
+                    required=""
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input 
+                    class="form-control" 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    [(ngModel)]="password" 
+                    required="" 
+                    minlength="8"
+                >
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid">Signup</button>
+        </form></div>
+</div>

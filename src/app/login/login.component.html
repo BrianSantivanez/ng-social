@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="fs-1 fw-bold text-decoration-underline">
+        Login
+    </div>
+
+    <div class="container" style="padding: 10px;margin: 50px;">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input
+                    class="form-control"
+                    type="username"
+                    id="username"
+                    formControlName="username"
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input 
+                    class="form-control" 
+                    type="password"
+                    id="password"
+                    formControlName="password"
+                >
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+        </form>
+
+        <br>
+        <div class="container">
+            <p>If you do not have accout you can register</p>
+            <a href="/login/signup" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Register</a>
+        </div>
+    </div>
+</div>
