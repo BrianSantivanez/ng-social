@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { User } from '../../models/user';
+
+interface TokenData {
+  access_token: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +18,13 @@ export class AuthService {
     return this.http.post<User>("http://localhost:3000/auth/signup", userData);
   }
 
-  login(userData: User): Observable<User> {
-    return this.http.post<User>("http://localhost:3000/auth/login", userData);
+  login(userData: User): Observable<TokenData> {
+    return this.http
+      .post<TokenData>("http://localhost:3000/auth/login", userData)
+      .pipe(tap((tokenData) => this.saveToken(tokenData.access_token)));
+  }
+
+  private saveToken(token: string): void{
+    localStorage.setItem("api_auth_token", token);
   }
 }
