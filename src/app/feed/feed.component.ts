@@ -15,8 +15,13 @@ export class FeedComponent implements OnInit{
   posts: Post[] = [];
 
   ngOnInit(): void {
-    this.postService.getPosts().subscribe((response) => {
-      this.posts = response
-    });
+    this.postService.getPosts().subscribe({
+      next: (response) => {
+        this.posts = response
+      },
+      error: (error) => {
+        console.log(error.message)
+      }}
+    );
   }
 }
