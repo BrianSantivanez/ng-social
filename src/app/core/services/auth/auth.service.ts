@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { User } from '../../models/user';
+import { User } from '../../models/user.model';
 
 interface TokenData {
   access_token: string;

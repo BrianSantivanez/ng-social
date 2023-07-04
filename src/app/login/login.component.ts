@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../core/services/auth/auth.service';
-import { User } from '../core/models/user';
+import { User } from '../core/models/user.model';
 import { Router } from '@angular/router';
 
 @Component({

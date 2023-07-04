@@ -13,4 +13,8 @@ export class PostService {
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>("http://localhost:3000/post");
   }
+
+  getPost(id: string | null): Observable<Post> {
+    return this.http.get<Post>(`http://localhost:3000/post/${id}`);
+  }
 }
