@@ -1,0 +1,16 @@
+<div class="container">
+    <form [formGroup]="newCommentForm" (ngSubmit)="addcomment()">
+        <div class="mb-3">
+            <label for="text" class="form-label">New comment</label>
+            <input
+                #text
+                class="form-control"
+                type="text"
+                id="text"
+                formControlName="text"
+            >
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="newCommentForm.invalid">Added new comment</button>
+    </form>
+</div>
