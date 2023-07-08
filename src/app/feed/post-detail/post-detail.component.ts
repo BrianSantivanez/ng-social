@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  ActivatedRoute } from '@angular/router';
-import { CommentService } from 'src/app/core/comment.service';
+import { CommentService } from 'src/app/core/services/comment/comment.service';
 import { Post } from 'src/app/core/models/post.model';
 import { PostComment } from 'src/app/core/models/postComment.model';
-import { PostService } from 'src/app/core/post.service';
+import { PostService } from 'src/app/core/services/post/post.service';
 
 @Component({
   selector: 'ngsocial-post-detail',

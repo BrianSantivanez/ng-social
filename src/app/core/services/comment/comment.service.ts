@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PostComment } from './models/postComment.model';
+import { PostComment } from '../../models/postComment.model';
 import { Observable } from 'rxjs';
 
 @Injectable({

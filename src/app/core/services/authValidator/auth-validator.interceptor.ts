@@ -21,8 +21,11 @@ export class AuthValidatorInterceptor implements HttpInterceptor {
           return event;
         },
         error: (error) => {
-          if(error.status === 401) {
-            this.router.navigateByUrl('login');
+          console.log(this.router.url)
+          if(!this.router.url.includes("/login/signup") && !this.router.url.includes("/about")) {
+            if(error.status === 401) {
+              this.router.navigateByUrl('login');
+            }
           }
         },
       })
