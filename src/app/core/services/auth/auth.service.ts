@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { User } from '../../models/user.model';
+import { isPlatformBrowser } from '@angular/common';
+import { UserService } from '../user/user.service';
 
 interface TokenData {
   access_token: string;
@@ -12,7 +14,18 @@ interface TokenData {
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private http: HttpClient,
+    private userService: UserService
+  ) { }
+
+  get token(): string | null {
+    if (isPlatformBrowser(this.platformId)){
+      return localStorage.getItem("api_auth_token")
+    }
+    return null
+  }
 
   signup(userData: User): Observable<User> {
     return this.http.post<User>("http://localhost:3000/auth/signup", userData);
@@ -21,7 +34,10 @@ export class AuthService {
   login(userData: User): Observable<TokenData> {
     return this.http
       .post<TokenData>("http://localhost:3000/auth/login", userData)
-      .pipe(tap((tokenData) => this.saveToken(tokenData.access_token)));
+      .pipe(tap((tokenData) => {
+        this.saveToken(tokenData.access_token),
+        this.userService.getUserProfile().subscribe()
+      }));
   }
 
   private saveToken(token: string): void{

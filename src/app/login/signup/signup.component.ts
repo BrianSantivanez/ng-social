@@ -1,5 +1,6 @@
 import { Component, ViewChild} from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class SignupComponent {
   username = ""
   password = ""
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   signup(): void{
     if (this.signupForm?.invalid){
@@ -22,6 +23,9 @@ export class SignupComponent {
       return;
     }
     console.log("valid", this.signupForm?.value)
-    this.auth.signup(this.signupForm?.value).subscribe();
+    this.auth.signup(this.signupForm?.value).subscribe({
+      complete: () => { this.router.navigateByUrl('login');}
+    });
+
   }
 }
