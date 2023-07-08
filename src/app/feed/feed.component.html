@@ -4,6 +4,23 @@
     </div>
 
     <ngsocial-post *ngFor="let post of posts" [post] = "post"></ngsocial-post>
+
+    <div class="container" style="width: 1000px;padding: 10px;margin: 50px;">
+        <form [formGroup]="newPostForm" (ngSubmit)="addPost()">
+            <div class="mb-3">
+                <label for="text" class="form-label">New Post</label>
+                <input
+                    #text
+                    class="form-control"
+                    type="text"
+                    id="text"
+                    formControlName="text"
+                >
+            </div>
+
+            <button type="submit" class="btn btn-primary" [disabled]="newPostForm.invalid">Added new post</button>
+        </form>
+    </div>
 </div>
 
 
