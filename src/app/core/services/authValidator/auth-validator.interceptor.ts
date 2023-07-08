@@ -23,8 +23,14 @@ export class AuthValidatorInterceptor implements HttpInterceptor {
         error: (error) => {
           console.log(this.router.url)
           if(!this.router.url.includes("/login/signup") && !this.router.url.includes("/about")) {
+            //when the user is not logged in
             if(error.status === 401) {
               this.router.navigateByUrl('login');
+              localStorage.removeItem("api_auth_token")
+            }
+            //when the user set and invalid id in the URL
+            if(error.status === 500) {
+              this.router.navigateByUrl('feed');
             }
           }
         },
