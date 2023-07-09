@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../core/services/auth/auth.service';
 import { User } from '../core/models/user.model';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'ngsocial-login',
@@ -19,7 +20,11 @@ export class LoginComponent implements OnInit{
     password: new FormControl("", [Validators.minLength(8), Validators.required]),
   })
 
-  constructor(private auth: AuthService, private router: Router){}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ){}
 
   ngOnInit(): void {
     this.loginForm.valueChanges.subscribe(console.log)
@@ -35,6 +40,7 @@ export class LoginComponent implements OnInit{
       error: () => {
         this.usernameInput.nativeElement.value = "";
         this.passwordInput.nativeElement.value = "";
+        this.toastr.error('', 'Username or Password is not correct', {timeOut: 3000});
       },
       complete: () => { this.router.navigateByUrl('feed');}
     });

@@ -10,6 +10,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/services/auth/auth.interceptor';
 import { AuthValidatorInterceptor } from './core/services/authValidator/auth-validator.interceptor';
 
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+import { provideToastr } from 'ngx-toastr';
+
 const interceptors = [
   {
     provide: HTTP_INTERCEPTORS,
@@ -35,7 +39,11 @@ const interceptors = [
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [interceptors],
+  providers: [
+    interceptors,
+    provideAnimations(),
+    provideToastr(),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
