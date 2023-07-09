@@ -37,6 +37,7 @@ export class AuthService {
       .pipe(tap((tokenData) => {
         this.saveToken(tokenData.access_token),
         this.userService.getUserProfile().subscribe()
+        window.location.reload();
       }));
   }
 
